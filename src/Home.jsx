@@ -2,7 +2,7 @@
 // - React: 리액트를 사용할 수 있게 해주는 핵심 객체 (JSX를 쓰기 위해 필요함)
 // - useState: 상태값(변하는 값)을 기억하고 관리하게 해주는 리액트 도구
 import React, { useState } from 'react';
-
+console.log('React');
 // react-router-dom에서 useNavigate를 가져옴
 // - useNavigate: 특정 경로(주소)로 화면을 이동할 수 있게 해주는 함수
 import { useNavigate } from 'react-router-dom';
@@ -13,15 +13,20 @@ function Home() {
     // nickname: 현재 입력된 닉네임을 저장하는 변수
     // setNickname: nickname 값을 바꾸는 함수
     // useState('') → 처음에는 빈 문자열로 시작
+    // [변수->값을 저장, 함수->값을 업데이트할 때 사용] = useState(초기값)(암기)
     const [nickname, setNickname] = useState('');
+
 
     // 페이지 이동을 위한 도구를 가져옴
     // navigate() 함수를 사용해서 페이지를 바꿀 수 있음
+    // navigate를 사용하기 위해 써준 것.(암기)
     const navigate = useNavigate();
 
     // 닉네임 입력창에 글자를 입력할 때마다 실행되는 함수
     // e는 이벤트 객체이고, e.target.value는 지금 입력한 값
     const handleChange = (e) => {
+
+        // 닉네임이라는 변수를 업데이트
         setNickname(e.target.value); // 입력한 값을 nickname 상태에 저장함
     };
 
@@ -47,6 +52,7 @@ function Home() {
             <input
                 type="text" // 입력 타입은 텍스트
                 placeholder="닉네임을 입력하세요" // 회색으로 보이는 안내 문구
+                //input의 value값에는 input 값을 저장한 state를 넣어준다. -> 여기서는 nickname
                 value={nickname} // 입력된 닉네임을 상태값과 연결
                 onChange={handleChange} // 입력할 때마다 handleChange 실행
                 style={styles.input} // 입력창 스타일 적용
