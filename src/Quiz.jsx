@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import questions from './data/questions.json';
+import questions from './questions.json';
 
 function Quiz() {
     const { nickname } = useParams();  // URL에서 닉네임 가져옴
