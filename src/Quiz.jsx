@@ -18,23 +18,30 @@ function Quiz() {
 
     const handleNext = () => {
         if (selectedOption === null) {
-            alert('선택지를 선택해주세요.');
+            alert("선택지를 선택해주세요.");
             return;
         }
 
-        // 정답 체크
-        if (selectedOption === currentQuestion.answer) {
-            setAnswerCounts(answerCounts + 1);
-        }
-
+        //마지막 문제가 아닐때 
         if (currentIndex + 1 < questions.length) {
-            // 다음 문제로
+            if (selectedOption === currentQuestion.answer) {
+                setAnswerCounts(answerCounts + 1);
+            }
             setCurrentIndex(currentIndex + 1);
-            setSelectedOption(null); // 선택 초기화
+            setSelectedOption(null);
         } else {
-            // 마지막 문제 → 결과 페이지로 이동
+            // 마지막 문제일 때는 직접 연산해서 넘기기
+            let finalScore;
+            if (selectedOption === currentQuestion.answer) {
+                //정답일 경우 
+                finalScore = answerCounts + 1;
+            } else {
+                //정답이 아닐 경우
+                finalScore = answerCounts;
+            }
+
             navigate(`/results/${nickname}`, {
-                state: { nickname, score: answerCounts },
+                state: { nickname, score: finalScore },
             });
         }
     };
